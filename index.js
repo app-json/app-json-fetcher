@@ -13,7 +13,7 @@ var app = module.exports = express()
 
 app.set('port', (process.env.PORT || 5000))
 app.use(logfmt.bodyParserStream())
-// app.use(cors())
+app.use(cors())
 
 app.get('/', function (req, res) {
 
