@@ -1,27 +1,38 @@
 {
-  "name": "",
-  "version": "0.0.0",
-  "description": "",
+  "name": "app-json-fetcher",
+  "version": "0.1.0",
+  "description": "A CORS-friendly webservice for fetching app.json file content from GitHub and Bitbucket repos",
   "main": "index.js",
   "scripts": {
-    "start": "echo no start script... yet!",
+    "start": "node index.js",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/app-json/app-json-fetcher"
   },
-  "keywords": ["","",""],
-  "author": "",
+  "keywords": [
+    "app.json",
+    "github",
+    "bitbucket"
+  ],
+  "author": "zeke",
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/app-json/app-json-fetcher/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/app-json",
   "devDependencies": {
-    "mocha": "^1.20.0"
+    "mocha": "^1.20.0",
+    "supertest": "^0.13.0"
   },
   "dependencies": {
-    "dotenv": "^0.2.8"
+    "bitbucket-url-to-object": "^0.2.0",
+    "dotenv": "^0.2.8",
+    "express": "^4.5.1",
+    "github": "^0.2.1",
+    "github-url-to-object": "^1.0.0",
+    "logfmt": "^1.1.2",
+    "superagent": "^0.18.1"
   }
 }
