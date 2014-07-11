@@ -56,5 +56,11 @@ describe('GET /', function(){
       .expect(404, done)
   })
 
+  it('redirects if repository query param is absent', function(done){
+    supertest(app)
+      .get('/')
+      .query({})
+      .expect(302, done)
+  })
 
 })

@@ -1,17 +1,27 @@
 "use strict"
 
+var path = require("path")
+var pkg = require(path.join(__dirname, "./package.json"))
 var util = require("util")
 var superagent = require("superagent")
 var github = require("github-url-to-object")
 var bitbucket = require("bitbucket-url-to-object")
 var logfmt  = require("logfmt")
+var cors = require("cors")
 var express = require("express")
 var app = module.exports = express()
 
 app.set('port', (process.env.PORT || 5000))
 app.use(logfmt.bodyParserStream())
+// app.use(cors())
 
 app.get('/', function (req, res) {
+
+  // Redirect to this app's README in the absence of the required
+  // repository query param
+  if (!req.query.repository)
+    return res.redirect(pkg.repository.url)
+
   var repository = req.query.repository
   var manifest_url
   var repo

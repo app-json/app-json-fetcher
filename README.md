@@ -10,6 +10,19 @@ Download node at [nodejs.org](http://nodejs.org) and install it, if you haven't 
 npm install app-json-fetcher --save
 ```
 
+## Usage
+
+```sh
+# Github shorthand
+curl https://app-json-fetcher.herokuapp.com/?repository=github:zeke/slideshow
+
+# Bitbucket shorthand
+curl https://app-json-fetcher.herokuapp.com/?repository=bitbucket:sikelianos/web-starter-kit
+
+# Long URLs
+curl https://app-json-fetcher.herokuapp.com/?repository=https://github.com/zeke/slideshow/tree/master/app.json
+
+```
 
 ## Tests
 
@@ -23,18 +36,20 @@ npm test
 > app-json-fetcher@0.1.0 test /Users/zeke/code/hero/app-json-fetcher
 > mocha
   GET /
-    ✓ fetches app.json content from GitHub (499ms)
-    ✓ fetches app.json content from Bitbucket (567ms)
-    ✓ accepts deep URLs (411ms)
-    ✓ returns a 404 if file is not found (659ms)
-    ✓ returns a 404 if file is not found (559ms)
-  5 passing (3s)
+    ✓ fetches app.json content from GitHub (819ms)
+    ✓ fetches app.json content from Bitbucket (851ms)
+    ✓ accepts deep URLs (705ms)
+    ✓ returns a 404 if file is not found (831ms)
+    ✓ returns a 404 if file is not found (784ms)
+    ✓ redirects if repository query param is absent 
+  6 passing (4s)
 
 ```
 
 ## Dependencies
 
 - [bitbucket-url-to-object](https://github.org/zeke/bitbucket-url-to-object): Extract user, repo, and other interesting properties from Bitbucket URLs
+- [cors](https://github.com/troygoode/node-cors): middleware for dynamically or statically enabling CORS in express/connect applications
 - [dotenv](https://github.com/scottmotte/dotenv): Loads environment variables from .env
 - [express](https://github.com/visionmedia/express): Fast, unopinionated, minimalist web framework
 - [github](https://github.com/mikedeboer/node-github): NodeJS wrapper for the GitHub API
