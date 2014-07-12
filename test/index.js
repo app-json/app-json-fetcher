@@ -40,7 +40,7 @@ describe('GET /', function(){
       .expect(200, done)
   })
 
-  it('returns a 404 if file is not found', function(done){
+  it('returns a 404 if bitbucket file is not found', function(done){
     supertest(app)
       .get('/')
       .query({repository: "bitbucket:sikelianos/nonexistent"})
@@ -48,7 +48,7 @@ describe('GET /', function(){
       .expect(404, done)
   })
 
-  it('returns a 404 if file is not found', function(done){
+  it('returns a 404 if gitub file is not found', function(done){
     supertest(app)
       .get('/')
       .query({repository: "github:zeke/nonexistent"})
@@ -56,7 +56,7 @@ describe('GET /', function(){
       .expect(404, done)
   })
 
-  it('redirects if repository query param is absent', function(done){
+  it('redirects if `repository` query param is absent', function(done){
     supertest(app)
       .get('/')
       .query({})

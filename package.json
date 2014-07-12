@@ -1,9 +1,8 @@
 {
   "name": "app-json-fetcher",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A CORS-friendly webservice for fetching app.json file content from GitHub and Bitbucket repos",
   "main": "index.js",
-  "private": true,
   "scripts": {
     "start": "node index.js",
     "test": "mocha"
