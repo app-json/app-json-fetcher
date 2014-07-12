@@ -25,7 +25,20 @@ npm install app-json-fetcher --save
 ```
 
 ```js
-require("app-json-fetcher")(repository, function(err, manifest) {
+var fetch = require("app-json-fetcher").fetch
+
+// Github shorthand
+fetch("github:zeke/slideshow", function(err, manifest) {
+  console.log(err, manifest)
+})
+
+// Bitbucket shorthand
+fetch("bitbucket:sikelianos/web-starter-kit", function(err, manifest) {
+  console.log(err, manifest)
+})
+
+// Long URL with branch or commit
+fetch("https://github.com/zeke/moby/tree/master", function(err, manifest) {
   console.log(err, manifest)
 })
 ```
