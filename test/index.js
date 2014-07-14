@@ -8,6 +8,8 @@ var app = require("..")
 
 
 describe('GET /', function(){
+  this.timeout(5000)
+
   it('fetches app.json content from GitHub', function(done){
     supertest(app)
       .get('/')
