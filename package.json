@@ -28,12 +28,8 @@
   },
   "dependencies": {
     "bitbucket-url-to-object": "^0.2.0",
-    "cors": "^2.4.1",
-    "dotenv": "^0.2.8",
-    "express": "^4.5.1",
-    "github": "^0.2.1",
     "github-url-to-object": "^1.0.0",
-    "logfmt": "^1.1.2",
+    "router": "^0.6.2",
     "superagent": "^0.18.1"
   }
 }

@@ -1,32 +1,42 @@
-"use strict"
+"use strict";
 
 var path = require("path")
+var http = require("http")
+var url = require("url")
 var pkg = require(path.join(__dirname, "./package.json"))
-var cors = require("cors")
-var express = require("express")
-var app = module.exports = express()
+var cors = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, OPTIONS"
+}
+var route = require("router")()
+var app = module.exports = http.createServer(route)
+
 app.fetch = require("./lib/fetch")
 
-app.set('port', (process.env.PORT || 5000))
-app.use(cors())
-
-app.get('/', function (req, res) {
-
-  var repository = req.query.repository
+route.get('/', function(req, res) {
+  var query = url.parse(req.url, true).query
+  var repository = query.repository
 
   // Redirect to README if query param is missing
-  if (!repository) return res.redirect(pkg.repository.url)
+  if (!repository) {
+    res.writeHead(302, {"Location": pkg.repository.url})
+    return res.end()
+  }
 
-  app.fetch(repository, function(err, manifest) {
+  app.fetch(repository, function (err, manifest) {
     if (err) {
       var status = err.match(/^(\d+).*/)[1]
       if (!status) status = 500
-      return res.send(status, {error: err})
+      res.writeHead(status, cors)
+      res.write(JSON.stringify({error: err}))
+      return res.end()
     }
-    return res.json(manifest)
-  })
 
+    res.writeHead(200, cors)
+    res.write(JSON.stringify(manifest))
+    return res.end()
+  })
 })
 
-if (!process.parent)
-  app.listen(app.get('port'))
+app.listen(process.env.PORT || 5000)
